@@ -1,0 +1,39 @@
+/* Spring Framework에서 사용되는 경로 및 환경 설정 파일 */
+1. src/main/java : 백앤드 코드가 있는 경로
+2. src/main/resource : 백엔드 코드가 실행될 때 참고하는 경로
+3. src/test/java : 테스트 코드  @Test
+4. src/test/resource : 테스트 관련 설정 파일의 보관 경로
+
+-- Tomcat관련 설정파일 >> DBCP관련 설정
+   WEB-INF/web.xml :: Servlet 정의, Filter 설정...
+   
+-- Spring 관련 설정 파일 >> 프로젝트 관련 설정 파일, DBCP관련 설정
+   WEB-INF/spring/root-context.xml :: Database 설정 관련 초기값(DBCP)
+   
+-- Web Service 관련 설정 파일 >> Servlet 관련 설정 파일, DBCP관련 설정
+   WEB-INF/spring/appServlet/servlet-context.xml
+   
+-- jsp 경로 :: WEB-INF폴더는 외부 접근이 불가능
+   src/main/webapp/WEB-INF/views
+   
+-- Maven 관련 파일
+   projcet root : pom.xml
+   
+-- ORM(myBatis) 관련 설정 파일
+   환경설정파일, Mapper파일
+   
+-- DBCP관련 항목
+   - Driver
+   - @url:port:sid
+   - user
+   - password
+
+-- Lombok Library
+   
+
+
+
+
+
+
+
