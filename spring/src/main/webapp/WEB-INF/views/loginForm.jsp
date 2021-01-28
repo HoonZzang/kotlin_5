@@ -26,7 +26,7 @@ ${memberPwd }
     
     var form = document.createElement("form");
     
-    form.action ="Login";
+    form.action ="Login?memberInfo=" + mId.value + "&memberInfo=" + mPwd.value;
     form.method= "POST";
     
     form.appendChild(mId);
