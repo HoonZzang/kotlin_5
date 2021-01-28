@@ -1,16 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>loginForm</title>
+<title>LogInForm</title>
 </head>
 <body>
+	<input type="text" name="mId" placeholder="아이디를 입력해주세요" />
+	<input type="password" name="mPwd" placeholder="패스워드를 입력해주세요" />
+	<input type="button" value="서버 요청" onClick="moveLoginForm()" />
 
-<input type ="text"  name = "accessInfo" value = "이름"  plaaceholder = "이름을 입력해주세요">  
-<input type ="password"  name = "accessInfo" value = "비밀번호"  plaaceholder = "비밀번호 입력해주세요">
-<submit></submit>  
+${mId }
+${mPwd }
+${memberId }
+${memberPwd }
 
 </body>
+
+
+<script>
+ function moveLoginForm(){
+    var mId = document.getElementsByName("mId")[0];
+    var mPwd = document.getElementsByName("mPwd")[0];
+    
+    var form = document.createElement("form");
+    
+    form.action ="Login";
+    form.method= "POST";
+    
+    form.appendChild(mId);
+    form.appendChild(mPwd);
+    
+    document.body.appendChild(form);
+    
+    form.submit();
+    
+ }
+</script>
 </html>
