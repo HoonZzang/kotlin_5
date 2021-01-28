@@ -4,25 +4,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>loginForm</title>
+<title>LogInForm</title>
 </head>
 <body>
-   아이디<input type="text" name="memberInfo" placeholder="아이디를 입력해주세요.">
-   비밀번호<input type="password" name="memberInfo" placeholder="비밀번호를 입력해주세요.">
-   <button onClick="moveLogin()">전송</button>
-
-
-<P>  The time on the server is ${serverTime}. </P>
+   <input type="text" name="memberInfo" placeholder="아이디를 입력해주세요"/>
+   <input type="password" name="memberInfo" placeholder="패스워드를 입력해주세요"/>
+   <input type="button" value="서버 요청" onClick="moveLoginForm()"/>
 </body>
+
 <script>
-      function moveLogin() {
-         var memberInfo = document.getElementsByName("memberInfo");
-         var form = document.createElement.form(memberInfo);
-         form.action = "http://192.168.0.91/Login";
-         form.method = post;
-         document.body.appendChild(form);
-         
-         form.submit();
-      }
-   </script>
+  function moveLoginForm(){
+    var memberInfo = document.getElementByName("memberInfo");
+      
+    var form = document.createElement("form");
+    form.action = "Login";
+    form.method = "POST";
+    
+    form.appendChild(memberInfo);
+    document.body.appendChild(form);
+    
+    form.submit();
+  }
+</script>
 </html>
