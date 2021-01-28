@@ -14,7 +14,5 @@
 
 </body>
 
-<script>
 
-</script>
 </html>
