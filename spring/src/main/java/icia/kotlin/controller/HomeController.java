@@ -10,9 +10,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import icia.kotlin.beans.Member;
 
 /**
  * Handles requests for the application home page.
@@ -37,23 +41,52 @@ public class HomeController {
       mv.addObject("serverTime", formattedDate );
       mv.addObject("welcome", "어서오세요~ 환영합니다");
       
-      mv.setViewName("home");
+      mv.setViewName("home"); //jsp
 
-      try {
-         Class.forName("oracle.jdbc.driver.OracleDriver");
-         Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@106.243.194.230:7006:xe","JUN123","1234");
-         System.out.println("success");
-      } catch (Exception e) {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }
+//      try {
+//         Class.forName("oracle.jdbc.driver.OracleDriver");
+//         Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@106.243.194.230:7006:xe","JUN123","1234");
+//         System.out.println("success");
+//      } catch (Exception e) {
+//         // TODO Auto-generated catch block
+//         e.printStackTrace();
+//      }
       
       return mv;
    }
-   @RequestMapping(value = "LoginForm", method = {RequestMethod.GET,RequestMethod.POST})
+   
+   
+   @RequestMapping(value = "LoginForm" , method = {RequestMethod.GET,RequestMethod.POST})
  public ModelAndView logInForm() {
 	   ModelAndView mav = new ModelAndView();
-	   mav.setViewName("loginForm");
+	   mav.setViewName("loginForm");  //jsp
 	   return mav;
    }
+//   
+//   @RequestMapping(value = "Login" , method = {RequestMethod.POST})
+// public ModelAndView logIn(@RequestParam ("mId") String id ,@RequestParam ("mPwd") String pwd) {
+//	   ModelAndView mav = new ModelAndView();
+//	   mav.addObject("mId", id);
+//	   mav.addObject("mPwd",pwd);
+//	   
+//	   mav.setViewName("loginForm");  //jsp
+//	   
+//	   return mav;
+//   }
+   @RequestMapping(value ="Login" , method = {RequestMethod.POST})
+  public ModelAndView logIn(@ModelAttribute Member m, 
+		  @RequestParam("memberInfo") String[] member) {
+	   
+	   ModelAndView mav = new ModelAndView();
+	   mav.addObject("mId",m.getMId());
+	   mav.addObject("mPwd",m.getMPwd());
+	   mav.addObject("memberId" , member[0]);
+	   mav.addObject("memberPwd" , member[1]);
+	   mav.setViewName("loginForm");
+	   
+	   return mav;
+  
+   }
+   
+   
 }
