@@ -8,9 +8,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import icia.kotlin.beans.Member;
 
 @Controller
 public class HomeController {
@@ -38,6 +42,22 @@ public class HomeController {
 	public ModelAndView logInForm() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("loginForm");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/Login", method = {RequestMethod.POST})
+	public ModelAndView logIn(@ModelAttribute Member m, 
+			@RequestParam("memberInfo") String[] member) {
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("mId", m.getMId());
+		mav.addObject("mPwd", m.getMPwd());
+		mav.addObject("memberId", member[0]);
+		mav.addObject("memberPwd", member[1]);
+		mav.addObject("memberPwd2", m.getMemberInfo()[1]);
+		mav.setViewName("loginForm");
+		String str;
+		
 		return mav;
 	}
 	
