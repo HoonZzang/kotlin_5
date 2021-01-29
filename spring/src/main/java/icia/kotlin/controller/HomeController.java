@@ -8,6 +8,7 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,11 +18,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import icia.kotlin.beans.Member;
+import icia.kotlin.services.Authentication;
 
 @Controller
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	@Autowired
+	private Authentication auth;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(Locale locale, ModelAndView mv) {
@@ -48,15 +52,12 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/Login" , method = RequestMethod.POST)
-	public ModelAndView logIn(@ModelAttribute Member m, @RequestParam("memberInfo") String[] member) {
-		ModelAndView mav = new ModelAndView();
+	public ModelAndView logIn(@ModelAttribute Member m) {
+		ModelAndView mav = null;
+		m.setServiceCode("Login");
 		
-		mav.addObject("mId", m.getMId());
-		mav.addObject("mPwd", m.getMPwd());
-		mav.addObject("memberId", member[0]);
-		mav.addObject("memberPwd", member[1]);
+		mav = auth.entrance(m);
 		
-		mav.setViewName("loginForm");  
 		return mav;
 	}
 }
