@@ -75,14 +75,16 @@ public class HomeController {
 //   }
    @RequestMapping(value ="Login" , method = {RequestMethod.POST})
   public ModelAndView logIn(@ModelAttribute Member m, 
-		  @RequestParam("memberInfo") String[] member) {
-	   
+		  @RequestParam("memberInfo") String[] memberInfo) { //String[] member 저장된값을 @ModelAttribute에서 사용가능
+	   //memberInfo 배열로 받을 수 있다 
 	   ModelAndView mav = new ModelAndView();
 	   mav.addObject("mId",m.getMId());
 	   mav.addObject("mPwd",m.getMPwd());
-	   mav.addObject("memberId" , member[0]);
-	   mav.addObject("memberPwd" , member[1]);
-	   mav.setViewName("loginForm");
+	   mav.addObject("memberId" , memberInfo[0]);
+	   mav.addObject("memberPwd" , memberInfo[1]);
+	   mav.addObject("memberInfo",m.getMemberInfo()[0]);
+	   
+	   mav.setViewName("loginForm");  //jsp
 	   
 	   return mav;
   

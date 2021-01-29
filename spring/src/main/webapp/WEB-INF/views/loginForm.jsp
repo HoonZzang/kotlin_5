@@ -14,7 +14,7 @@
    <input type="text" name="mId" placeholder="아이디를 입력해주세요"/>
    <input type="password" name="mPwd" placeholder="패스워드를 입력해주세요"/>
    <input type="button" value="서버 요청" onClick="moveLoginForm()"/>
-   
+   <br/>
    ${mId}<br/>
    ${mPwd}<br/>
    ${memberId }<br/>
