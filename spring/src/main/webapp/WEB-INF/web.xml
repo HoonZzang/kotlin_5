@@ -10,7 +10,7 @@
    </context-param>
    
    <!-- Creates the Spring Container shared by all Servlets and Filters -->
-   <!--클라이언트 요청 -> 리스터 - > context ->  -->
+   <!--클라이언트 요청 -> 리스너 - > context ->  -->
    <!-- appServlet -> Dispatcher -->
    <listener>
       <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

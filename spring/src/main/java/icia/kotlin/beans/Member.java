@@ -6,5 +6,10 @@ public class Member {
 	
 	private String mId;
 	private String mPwd;
-	private String memberInfo[];
+	private String mName;
+	private String mPhone;
+	private String sCode; 
+	private String accessTime;
+	
+	
 }
