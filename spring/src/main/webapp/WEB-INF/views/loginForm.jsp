@@ -11,8 +11,12 @@
 	<input type="password" name="mPwd" placeholder="패스워드를 입력해주세요" />
 	<input type="button" value="서버 요청" onClick="moveLoginForm()" />
 
-${mId }
-${mPwd }
+
+${member.getMId() }
+${member.getMName() }
+${member.getMPhone() }
+
+
 
 
 </body>
@@ -25,7 +29,7 @@ ${mPwd }
     
     var form = document.createElement("form");
     
-    form.action ="Login";
+    form.action ="Login?SCode=Login";
     form.method= "POST";
     
     form.appendChild(mId);

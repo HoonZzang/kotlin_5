@@ -53,11 +53,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/Login" , method = RequestMethod.POST)
 	public ModelAndView logIn(@ModelAttribute Member m) {
-		ModelAndView mav = null;
-		m.setServiceCode("Login");
 		
-		mav = auth.entrance(m);
-		
-		return mav;
+		return auth.entrance(m);
 	}
 }

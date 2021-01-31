@@ -33,8 +33,7 @@ public class DBCPTest{
 	public void connectTest() {
 		try {
 			SqlSession session = sqlSession.openSession();
-			Connection connect;
-			connect = data.getConnection();
+			Connection connect = data.getConnection();
 			log.info(session);
 			log.info(connect);
 			log.info(mapper.getDate());
