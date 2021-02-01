@@ -7,10 +7,9 @@
    <title>Home</title>
 </head>
 <body>
-<h1>
-   ${welcome} 
-</h1>
-<P>  The time on the server is ${serverTime}. </P>
- <a href="/LoginForm">로그인폼 이동</a> 
+	
+
+ <a href="/LoginForm">로그인폼 이동</a>
+ <p> Now Time : ${Access}</p> 
 </body>
 </html>

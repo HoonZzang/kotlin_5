@@ -21,6 +21,7 @@
 <%-- 	${memberInfo.getMId() } --%>
 <%-- 	${memberInfo.getMName() } --%>
 <%-- 	${memberInfo.getMPhone() } --%>
+<%-- ${memberInfo.getmPwd } --%>
 <%--    ${memberId }<br/> --%>
 <%--    ${memberPwd }<br/> --%>
 </body>

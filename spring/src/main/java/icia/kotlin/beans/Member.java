@@ -9,7 +9,16 @@ public class Member {
 	private String mName;
 	private String mPhone;
 	private String sCode; 
+	
+	
+	
+	
+	
+	
+	
+	
 	private String accessTime;
+	
 	
 	
 }
