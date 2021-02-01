@@ -9,4 +9,11 @@ public class Member {
 	private String mName;
 	private String mPhone;
 	private String SCode;
+	
+	private String MvCode;
+	private String MvName;
+	private String MvGrade;
+	private String MvStatus;
+	private String MvImage;
+	private String MvComments;
 }

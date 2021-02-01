@@ -15,7 +15,7 @@
 		<bean id="connectInfo" class="com.zaxxer.hikari.HikariConfig">
 			<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 			<property name="jdbcUrl" value="jdbc:oracle:thin:@106.243.194.230:7006:xe" />
-			<property name="username" value="zzang" />
+			<property name="username" value="HANG" />
 			<property name="password" value="1234" />
 		</bean>
 		
@@ -29,5 +29,11 @@
 			<property name="dataSource" ref="data"></property>
 		</bean>
 		
+		<!-- Transaction 정보 -->
+		<bean id="tran" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+			<property name="dataSource" ref="data"></property>
+		</bean>
+		
+		<!-- myBatis base-package 정보 -->		
 		<mybatis-spring:scan base-package="icia.kotlin.mapper" />
 </beans>
