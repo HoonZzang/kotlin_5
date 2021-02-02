@@ -12,8 +12,9 @@
 	<input type="button" value="서버 요청" onClick="moveLoginForm()"/>
 	
 	<br />
-	${mId }<br />
-	${mPwd }
+	${member.getMId()}<br />
+	${member.getMPhone()}<br />
+	${member.getMName()}
 </body>
 <script>
 
@@ -22,7 +23,7 @@ function moveLoginForm(){
 	var mPwd = document.getElementsByName("mPwd")[0];
 	
 	var form = document.createElement("form");
-	form.action = "Login";
+	form.action = "Login?sCode=A";
 	form.method = "POST";
 	
 	form.appendChild(mId);

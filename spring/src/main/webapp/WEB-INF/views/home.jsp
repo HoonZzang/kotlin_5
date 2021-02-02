@@ -5,10 +5,24 @@
 <html>
 <head>
 	<title>Home</title>
+	<link rel="stylesheet" type="text/css" href="/resources/css/kotlin.css" />
 </head>
 <body>
-	<h1>${welcome}</h1>
-	<P>  The time on the server is ${serverTime}. </P>
-	<a href="http://192.168.0.252/LoginForm" >로그인폼 이동</a>
+
+	<a href="http://192.168.0.252/LoginForm" >로그인폼 이동</a><br />
+	<P>  Now Time : ${Access} </P>
+	
 </body>
+<script>
+	let movieList = JSON.parse('${jsonData}');
+	
+	movieList.forEach(movie =>{
+		let mvDiv = document.createElement('Div');
+    let mvH2 =  document.createElement('h2');
+    let mvP1 =  document.createElement('p');
+    let mvP2 =  document.createElement('p');
+    
+    
+	})
+</script>
 </html>
