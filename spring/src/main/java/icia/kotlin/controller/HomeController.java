@@ -33,6 +33,12 @@ public class HomeController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/Step2", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView step2(@ModelAttribute Movie movie) {
+		mav = reservation.entrance(movie);	
+		return mav;
+	}
+	
 	@RequestMapping(value = "/LoginForm", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView logInForm() {
 		mav = new ModelAndView();

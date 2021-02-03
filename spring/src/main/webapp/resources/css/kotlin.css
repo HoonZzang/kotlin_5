@@ -1,49 +1,9 @@
 @charset "UTF-8";
 
-* {
-	margin: 0;
-	padding: 0;
+.movie{
+	width : 150px;
+	height : 30px;
+	margin : 5px 5px 5px 5px;
+	background-size : contain;
 }
 
-body {
-	text-align: center;
-}
-
-header {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-
-header>h1 {
-	color: crimson;
-}
-
-header>p {
-	color: rgb(247, 27, 11);
-}
-
-section {
-	display: flex;
-	flex-direction: row;
-	padding: 16px;
-}
-
-section>div>h2 {
-	text-align: center;
-	padding-bottom: 16px;
-}
-
-section>div {
-	flex: 1;
-	margin: 0 3px;
-	padding: 5px 10px;
-	background: rgb(248, 250, 116);
-	text-align: left;
-}
-
-ul {
-	width: 100%;
-	padding: 8px;
-	list-style-position: inside;
-}
