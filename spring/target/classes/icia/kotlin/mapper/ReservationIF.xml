@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="icia.kotlin.mapper.ReservationIF">
+	<!-- 개수가 몇개가 되든 어레이 리스트로 받음 -->
+	<!-- QUERY에 포함된 문자 중 < > & || 등 이 있다면 XML 파싱을 하지 않도록 -->
+	<select id="getMovieList" resultType="icia.kotlin.bean.Movie">
+	<!-- 상영기간이 지난 영화를 제외한 상영중인 영화, 상영예정인 영화 -->
+	<![CDATA[
+	SELECT MV_CODE AS MVCODE, MV_NAME AS MVNAME, MV_GRADE AS MVGRADE, MV_STATUS AS MVSTATUS, MV_IMAGE AS MVIMAGE, MV_COMMENTS AS MVCOMMENTS FROM MV WHERE MV_STATUS != 'B'
+	]]>
+	</select>
+	
+	<select id="getMovieDate" resultType="icia.kotlin.bean.Movie">
+	<!-- 영화 하나 출력 -->
+	<![CDATA[
+	SELECT MV_CODE AS MVCODE, MV_NAME AS MVNAME, MV_GRADE AS MVGRADE, MV_STATUS AS MVSTATUS, MV_IMAGE AS MVIMAGE, MV_COMMENTS AS MVCOMMENTS FROM MV WHERE MV_CODE = #{mvCode}
+	]]>
+	</select>
+</mapper>
