@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<a href="http://192.168.0.252/LoginForm" >로그인폼 이동</a><br />
+	<a href="http://192.168.0.105/LoginForm" >로그인폼 이동</a><br />
 	<P>  Now Time : ${Access} </P>
 	<section id="movieZone"></section>
 </body>
