@@ -11,4 +11,7 @@ public class Movie {
 	private String mvStatus;
 	private String mvImage;
 	private String mvComments;
+	private String mvDate;
+	private String mvTime;
+	private String mvScreen;
 }
