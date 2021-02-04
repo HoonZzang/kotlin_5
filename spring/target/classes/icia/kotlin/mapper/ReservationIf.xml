@@ -13,4 +13,11 @@
 		<![CDATA[	AND MV_CODE = #{mvCode}	]]>
 		</if>
 	</select> 
+	
+	<select id="getScreening" resultType="icia.kotlin.beans.Movie">
+		<![CDATA[
+			SELECT * FROM SCREENING 
+			WHERE MVCODE=#{mvCode} AND MVDATE = #{mvDate}
+		]]>
+	</select>
 </mapper>

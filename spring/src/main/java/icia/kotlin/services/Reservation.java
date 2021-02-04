@@ -36,9 +36,45 @@ public class Reservation {
 			case "Step2":
 				mav = this.screeningDate(movie);
 				break;
+			case "Step3":
+				mav = this.screeningTime(movie);
+				break;
+			case "Step4":
+				mav = this.selectSeat(movie);
+				break;
 			}
 		}
 		return mav;
+	}
+	
+	/* Select Seat */
+	private ModelAndView selectSeat(Movie movie) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println(movie.getSCode());
+		System.out.println(movie.getMvCode());
+		System.out.println(movie.getMvThCode());
+		System.out.println(movie.getMvScreen());
+		System.out.println(movie.getMvDateTime());
+		
+		mav.addObject("Access", this.getCurrentDate('f'));
+		mav.setViewName("step4");
+		return mav;
+	}
+	
+	/* Screening Time */
+	private ModelAndView screeningTime(Movie movie) {
+		ModelAndView mav = new ModelAndView();
+				
+		/* Movie Info & Convert to JSON */
+		String jsonData = gson.toJson(this.getScreening(movie));		
+		mav.addObject("ScreeningData", jsonData);	
+		
+		return mav;
+	}
+	
+	/* Get Screening Data */
+	private ArrayList<Movie> getScreening(Movie movie){
+		return mapper.getScreening(movie);
 	}
 	
 	/* Screening Date */
@@ -82,8 +118,8 @@ public class Reservation {
 		Date date = new Date();
 		
 		SimpleDateFormat sdf = (dateType=='f')? new SimpleDateFormat("yyyy-MM-dd HH:mm:ss E요일") :
-			(dateType=='d')? new SimpleDateFormat("yyyy-MM-dd"): 
-				(dateType=='t')? new SimpleDateFormat("HH:mm E요일") : null;
+			(dateType=='d')? new SimpleDateFormat("yyyy-MM-dd E요일"): 
+				(dateType=='t')? new SimpleDateFormat("HH:mm") : null;
 				
 		return sdf.format(date);
 	}

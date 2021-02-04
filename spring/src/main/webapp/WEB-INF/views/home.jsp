@@ -12,25 +12,21 @@
 	<P>  Now Time : ${Access} </P>
 	<section id="movieZone"></section>
 </body>
-<script> 
-	let dayStr = "${Access}";
-	let day = (dayStr.split(" "))[0].split("-");
-	let now = new Date();
-	
-	now.setFullYear(parseInt(day[0]), parseInt(day[1])-1, parseInt(day[2]));
+<script> 	
 	let section = document.getElementById("movieZone");
 	let movieList = JSON.parse('${jsonData}');
 	
 	let record = parseInt(movieList.length/5);
 	record = (movieList.length%5 > 0)? record + 1: record;
 	for(rIndex=0; rIndex < record; rIndex++){
+		
 		let div = document.createElement('Div');
 		div.style.display = "inline-flex";
 		div.setAttribute("name", "line");
 		section.appendChild(div);
+		
 	}
-
-	for(index=0; index < movieList.length; index++){
+		for(index=0; index < movieList.length; index++){
 		let rDivIndex = parseInt(index/5);
 		let mvDiv = document.createElement('Div');
 		mvDiv.style.width = "150px";
@@ -44,7 +40,7 @@
 		let line = document.getElementsByName("line")[rDivIndex];
 		line.appendChild(mvDiv);
 	}
-	
+
 function divClick(mvCode){
 	//서버전송
 	let form = document.createElement("form");
