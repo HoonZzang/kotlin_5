@@ -9,7 +9,7 @@
 			SELECT MV_CODE AS MVCODE, MV_NAME AS MVNAME, MV_GRADE AS MVGRADE, MV_STATUS AS MVSTATUS, MV_IMAGE AS MVIMAGE, MV_COMMENTS AS MVCOMMENTS 
 			FROM MV WHERE MV_STATUS != 'B'
 		]]> 
-		<if test='mvCode != null'>
+		<if test='mvCode != null'>    <!-- mvCode 여기서쓰임  -->
 		<![CDATA[	AND MV_CODE = #{mvCode}	]]>
 		</if>
 	</select>

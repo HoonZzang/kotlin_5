@@ -48,7 +48,7 @@
 function divClick(mvCode){
 	//서버전송
 	let form = document.createElement("form");
-	form.action = "Step2?sCode=Step2&mvCode=" + mvCode;
+	form.action = "Step2?sCode=Step2&mvCode=" + mvCode; //레저ㅏ베이션 sCdoe 는 스위치 분기  mvCode xml까지가서
 	form.method = "post"
 	
 	document.body.appendChild(form);

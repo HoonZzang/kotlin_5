@@ -40,21 +40,34 @@ public class Reservation {
 			case "Step3" :
 				mav  = this.screeningTime(movie);
 				break;
+			case "Step4":
+				mav  = this.screenSeat(movie);
 			}
 		}
 		return mav;
 	}
 	
 	
+	private ModelAndView screenSeat(Movie movie) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println(movie);
+		mav.addObject("Access",this.getCurrentDate('f'));
+		mav.setViewName("step4");
+		return mav;
+	}
+
+
 	private ModelAndView screeningTime(Movie movie) {
 		ModelAndView mav = new ModelAndView();
+		//System.out.println("movie mvCode="+movie.getMvCode());
+		 //System.out.println("movie mvDate="+movie.getMvDate());
 		/* Start Date */
 		mav.addObject("Access", this.getCurrentDate('d'));
 		
 		
 		/* Movie Info & Convert to JSON */
 		String jsonData = gson.toJson(this.getScreening(movie));
-		System.out.println("jsonData=" + jsonData); 
+		//System.out.println("jsonData=" + jsonData); 
 		mav.addObject("ScreeningData", jsonData);	
 		
 		return mav;

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import icia.kotlin.beans.Member;
@@ -43,17 +44,24 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/Step3", method = {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
 	public String step3(@ModelAttribute Movie movie) throws UnsupportedEncodingException {		
 		ModelAndView mav = new ModelAndView();
 		mav = reservation.entrance(movie);
-		System.out.println("step="+movie.getSCode());
-		System.out.println("step2="+ movie.getMvCode());
+		//System.out.println("step="+movie.getSCode());
+		//System.out.println("step2="+ movie.getMvCode());
 		 
-		System.out.println(mav.getModel().get("ScreeningData"));
-		URLEncoder.encode(mav.getModel().get("ScreeningData").toString(),"UTF-8");
-		return null;
+		//System.out.println(mav.getModel().get("ScreeningData"));
+		
+		return URLEncoder.encode(mav.getModel().get("ScreeningData").toString(),"UTF-8");
 	}
 	
+	@RequestMapping(value = "/Step4", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView step4(@ModelAttribute Movie movie) {
+		System.out.println("나야");
+		mav = reservation.entrance(movie);	
+		return mav;
+	}
 	
 	
 	

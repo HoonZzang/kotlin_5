@@ -17,7 +17,9 @@
    </section>
 </body>
 <script>
+let ScreeningData;
 function init(){
+	
    /* Convert Date */
    let dateList = document.getElementById("selectionDate");
    let dayStr = "${Access}"; //2021-02-03
@@ -27,6 +29,8 @@ function init(){
    for(i=0;i<7;i++){
       now.setDate(now.getDate() + ((i==0)?0 : 1));
       let dateDiv = document.createElement('Div');
+      let mvInput = document.createElement('Input');
+      
       let month = ((now.getMonth()+1) < 10)? "0" + (now.getMonth()+1) : (now.getMonth()+1);
       let date = (now.getDate() < 10)? "0" + now.getDate() : now.getDate();
       dateDiv.textContent = now.getFullYear() + "-" + month + "-" + date;
@@ -38,7 +42,7 @@ function init(){
    
    let movieInfo = document.getElementById("movieInfo");
    /* Append movieInfo Div */
-   let movie = JSON.parse('${movieData}');
+   let movie = JSON.parse('${movieData}');  //파싱JSON.parse('${movieData}') 객체화완료 
    
    let mvImage = document.createElement('Div');
    mvImage.className = "movie";
@@ -73,17 +77,80 @@ function init(){
 		let request = new XMLHttpRequest();
 		request.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-				alert("서버 갔다 옴");
-				alert(mvCode + ":" + mvDate);
-				let jsonData = decodeURIComponent(request.response);
-				alert (jsonData);
+				//alert("서버 갔다 옴");
+				//alert(mvCode + ":" + mvDate);
+				let jsonData = decodeURIComponent(request.response); //응답을받는친구 
+																		//파싱 객체화시켜주는친구
+				 Screen(jsonData);
 			
 				
 			}
 		};
-		request.open("POST", "Step3?sCode=Step3&" + "mvCode=" + mvCode
-				+ "&mvDate=" + mvDate, true);
-		request.send();
+		request.open("POST","Step3",true);
+		request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
+		request.send("sCode=Step3&mvCode="+mvCode+"&mvDate="+mvDate);
+		
+// 		request.open("POST", "Step3?sCode=Step3&" + "mvCode=" + mvCode
+// 				+ "&mvDate=" + mvDate, true);
+// 		request.send();
 	}
+		
+	function Screen(jsonData){
+	    alert (jsonData);
+	    
+	    let selectionTime = document.getElementById("selectionTime");
+	    let screen = JSON.parse(jsonData);
+	    
+// 	    ScreeningData=screen;
+	    
+	    for(index=0; index<screen.length; index++){
+	       let i = index;
+	       let gDiv = document.createElement("div");
+	       let gImg = document.createElement("img");
+	       gImg.src = "/resources/images/" + screen[index].mvGrade + ".jpg";
+	       
+	       let gScreen = document.createElement("input");
+	       gScreen.type = "button";
+	       gScreen.value = screen[index].mvDate.substring(11,16) + " " + screen[index].mvScreen + "관";
+	       gScreen.style.cursor = "pointer";
+	       gScreen.addEventListener('click', function(){
+	          gScreenClick(i);
+	       });
+	       
+	       selectionTime.appendChild(gImg);
+	       selectionTime.appendChild(gScreen);
+	       
+	        //selectionTime.appendChild(selectionTime);
+	       selectionTime.appendChild(gDiv);
+	    }
+	
+	    
+// 	    let sctime = document.createElement('Div');              
+// 	    sctime.textContent = screen[0].mvName;
+// 	    sctime.className = "screen";
+// 	    selectionTime.appendChild(sctime);
+	    
+//	     let sctime = document.createElement('Div');              
+//	     sctime.textContent = screen[0].mvDate;
+//	     sctime.className = "screen";
+//	     selectionTime.appendChild(sctime);
+	    
+	    
+
+     	
+	function gScreenClick(index){
+		let formData = "sCode=Step4&mvCode=" + screen[index].mvCode + 
+		"&mvThCode=1&mvDateTime=" + screen[index].mvDate.replace(/-/g, "") + screen[index].mvDate.replace(":", "") 
+		 + "&mvScreen=" + screen[index].mvScreen;
+
+		let form = document.createElement("form");
+		form.action = "Step4?" + formData;
+		form.method = "post";
+		document.body.appendChild(form);
+		form.submit();
+	}
+		
+	}
+	
 </script>
 </html>
