@@ -18,6 +18,7 @@
 	</section>
 </body>
 <script>
+	let screeningData;
 	function init() {
 		/* Convert Date */
 		let dateList = document.getElementById("selectionDate");
@@ -78,7 +79,6 @@
 		let request = new XMLHttpRequest();
 		request.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-				alert("서버 갔다 옴");
 				alert(mvCode + ":" + mvDate);
 				let jsonData = decodeURIComponent(request.response);
 				alert(jsonData);
@@ -119,7 +119,7 @@
 	
 	function tScreenClick(index){
 		let formData = "sCode=Step4&mvCode=" + screeningData[index].mvCode + 
-		"&mvThCode=1&mvDateTime=" + screeningData[index].mvDate.replace(/-/g, "") + screeningData[index].mvDate.replace(":", "") 
+		"&mvThCode=1&mvDateTime="+screeningData[index].mvDate.replace(/-/g,"").replace(/:/g,"").replace("+","")
 		 + "&mvScreen=" + screeningData[index].mvScreen;
 
 		let form = document.createElement("form");
