@@ -53,6 +53,8 @@ public class Reservation {
 		ModelAndView mav = new ModelAndView();
 		System.out.println(movie);
 		mav.addObject("Access",this.getCurrentDate('f'));
+		System.out.println(movie.getMvDateTime());
+		System.out.println(movie.getMvDate());
 		mav.addObject("SeatInfo", gson.toJson(this.getSeat(movie)));
 		
 		

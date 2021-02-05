@@ -12,7 +12,7 @@ public class Movie {
 	private String mvImage;
 	private String mvComments;
 	private String mvDate;
-	
+	private String mvTime;
 	
 	
 	private String mvThCode;

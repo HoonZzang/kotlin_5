@@ -139,10 +139,14 @@ function init(){
 
      	
 	function gScreenClick(index){
-		let formData = "sCode=Step4&mvCode=" + screen[index].mvCode + 
-		"&mvThCode=1&mvDateTime=" + screen[index].mvDate.replace(/-/g, "") + screen[index].mvDate.replace(":", "") 
-		 + "&mvScreen=" + screen[index].mvScreen;
+		let aa = screen[index].mvDate.replace(/-/g, "");
+		let bb = aa.replace(/:/g,"");
 
+ 		let cc = bb.replace("+","");
+
+		let formData = "sCode=Step4&mvCode=" + screen[index].mvCode + 
+		"&mvThCode=1&mvDateTime=" +  cc //screen[index].mvDate.replace(/-/g, "")
+		 + "&mvScreen=" + screen[index].mvScreen;
 		let form = document.createElement("form");
 		form.action = "Step4?" + formData;
 		form.method = "post";
