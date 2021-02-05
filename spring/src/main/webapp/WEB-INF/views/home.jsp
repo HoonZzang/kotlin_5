@@ -19,7 +19,7 @@
 	
 	now.setFullYear(parseInt(day[0]), parseInt(day[1])-1, parseInt(day[2]));
 	let section = document.getElementById("movieZone");
-	let movieList = JSON.parse('${jsonData}');
+	let movieList = JSON.parse('${jsonData}');   //json을 파스해준다 객체화 해준다 
 	
 	let record = parseInt(movieList.length/5);
 	record = (movieList.length%5 > 0)? record + 1: record;
