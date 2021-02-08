@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 
 import icia.kotlin.beans.Member;
 import icia.kotlin.beans.Movie;
+import icia.kotlin.beans.Seat;
 import icia.kotlin.mapper.MapperInterface;
 import icia.kotlin.mapper.ReservationIf;
 
@@ -50,15 +51,17 @@ public class Reservation {
 	/* Select Seat */
 	private ModelAndView selectSeat(Movie movie) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println(movie.getSCode());
-		System.out.println(movie.getMvCode());
-		System.out.println(movie.getMvThCode());
-		System.out.println(movie.getMvScreen());
-		System.out.println(movie.getMvDateTime());
-		
+		/* Current time */		
 		mav.addObject("Access", this.getCurrentDate('f'));
+		mav.addObject("SeatInfo", gson.toJson(this.getSeat(movie)));
+		/* 상영정보 */
+		
 		mav.setViewName("step4");
 		return mav;
+	}
+	
+	private ArrayList<Seat> getSeat(Movie movie){
+		return mapper.getSeat(movie);
 	}
 	
 	/* Screening Time */
