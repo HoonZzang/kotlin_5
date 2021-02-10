@@ -17,6 +17,7 @@
    </section>
 </body>
 <script>
+let screenData;
 function init(){
    /* Convert Date */
    let dateList = document.getElementById("selectionDate");
@@ -69,14 +70,16 @@ function init(){
 
 
 function divClick(mvCode, mvDate) {
-    
+    test = 2;
     let request = new XMLHttpRequest();
     request.onreadystatechange = function() {
        if (this.readyState == 4 && this.status == 200) {
           alert("서버 갔다 옴");
           alert(mvCode + ":" + mvDate);
           let jsonData = decodeURIComponent(request.response);
-          Screen(jsonData);
+          
+          screenData = JSON.parse(jsonData);
+          Screen(screenData);
        
           
        }
@@ -90,21 +93,19 @@ function divClick(mvCode, mvDate) {
 //     request.send();
  }
  
- function Screen(jsonData){
-	 alert (jsonData);
+ function Screen(screenData){
 	 
 	 let selectionTime = document.getElementById("selectionTime");
-	 let screen = JSON.parse(jsonData);
 	 
-	 for(index=0; index<screen.length; index++){
+	 for(index=0; index<screenData.length; index++){
 		 let i = index;
 		 let gDiv = document.createElement("div");
 		 let gImg = document.createElement("img");
-		 gImg.src = "/resources/images/" + screen[index].mvGrade + ".jpg";
+		 gImg.src = "/resources/images/" + screenData[index].mvGrade + ".jpg";
 		 
 		 let gScreen = document.createElement("input");
 		 gScreen.type = "button";
-		 gScreen.value = screen[index].mvDate.substring(11,16) + " " + screen[index].mvScreen + "관";
+		 gScreen.value = screenData[index].mvDate.substring(11,16) + " " + screenData[index].mvScreen + "관";
 		 gScreen.style.cursor = "pointer";
 		 gScreen.addEventListener('click', function(){
 			 gScreenClick(i);
@@ -118,9 +119,10 @@ function divClick(mvCode, mvDate) {
 	 
 
 	 function gScreenClick(index){
-		 let formData = "sCode=Step4&mvCode=" + screen[index].mvCode + 
-			"&mvThCode=1&mvDateTime=" + screen[index].mvDate.replace(/-/g, "") + screen[index].mvDate.replace(":", "") 
-			 + "&mvScreen=" + screen[index].mvScreen;
+		 alert(screenData[index].mvDate);
+		 let formData = "sCode=Step4&mvCode=" + screenData[index].mvCode + 
+			"&mvThCode=1&mvDateTime=" + screenData[index].mvDate.replace(/-/g, "").replace(/:/g, "").replace("+", "")
+			 + "&mvScreen=" + screenData[index].mvScreen;
 		 
 
 			let form = document.createElement("form");

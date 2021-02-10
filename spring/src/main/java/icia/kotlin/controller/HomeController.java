@@ -58,6 +58,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/Step4", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView step4(@ModelAttribute Movie movie) {
+		System.out.println("test :: "+movie.getMvDateTime());
 		mav = reservation.entrance(movie);	
 		return mav;
 	}

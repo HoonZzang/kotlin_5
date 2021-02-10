@@ -12,4 +12,9 @@
 	<section id="seatZone">좌석 선택 페이지입니다.</section>
 </body>
 
+<script>
+	let seatInfo = ${seatInfo};
+	alert(seatInfo);
+</script>
+
 </html>
